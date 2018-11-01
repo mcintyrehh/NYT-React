@@ -1,0 +1,14 @@
+.title {
+    background-color: rgba(0,0,0,.9);
+    color: white;
+    text-align: center;
+    padding-top: 20px;
+    font-size: 30pt;
+    margin: 30px;
+    min-height: 500px;
+    border-radius: 25px;
+}
+.searchBox {
+    color: white;
+    margin: 0 auto;
+}
