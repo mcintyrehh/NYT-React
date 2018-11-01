@@ -2,15 +2,30 @@ import React, { Component } from "react";
 import { Row, Col, Form, Input, Button } from 'antd';
 import '../../App.css';
 import "./searchbox.css";
+import API from "../../utils/API";
 
 class SearchBox extends Component {
     constructor() {
         super();
         this.state = {
             formLayout: 'vertical',
+            search: "",
+            startYear: 1990,
+            endYear: 2000
         };
     }
-
+    componentDidMount() {
+        this.searchArticles("JavaScript");
+      }
+    handleFormSubmit = event => {
+        event.preventDefault();
+        this.searchMovies(this.state.search);
+      };
+    searchArticles = query => {
+        API.searchArticles(query)
+          .then(res => this.setState({ result: res.data }))
+          .catch(err => console.log(err));
+      };
     render() {
         const FormItem = Form.Item
         const { formLayout } = this.state;
@@ -18,6 +33,7 @@ class SearchBox extends Component {
         const buttonItemLayout = formLayout === 'horizontal' ? {
             wrapperCol: { span: 14, offset: 4 },
         } : null;
+        
         return (
             <Row type="flex" justify="center">
                 <Col span={16} style={{margin: '0 auto'}}>
@@ -37,7 +53,9 @@ class SearchBox extends Component {
                             <Input placeholder="input placeholder" />
                         </FormItem>
                         <FormItem {...buttonItemLayout}>
-                            <Button type="primary">Search</Button>
+                            <Button 
+                            type="primary"
+                            onClick={this.handleFormSubmit}>Search</Button>
                         </FormItem>
                     </Form>
                 </Col>
