@@ -3,11 +3,13 @@ const BASEURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
 const APIKEY = "cd28b096fd704b9c816a4d2f39e42b72";
 
 export default {
-  searchArticles: function(query) {
+  searchArticles: function(searchObj) {
     return axios.get(BASEURL, {
       params: {
-        'api-key': "cd28b096fd704b9c816a4d2f39e42b72",
-        'q': query,
+        'api-key': APIKEY,
+        'q': searchObj.query,
+        'begin_date': searchObj.startYear,
+        'end_date': searchObj.endYear,
       }
     })
     .then(function (response) {
