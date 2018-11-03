@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import './App.css';
-import { Layout, Menu, Row, Col, Affix } from 'antd';
+import { Layout, Row, Col, Affix } from 'antd';
 import Search from "./pages/Search"
 import SearchBox from './components/SearchBox';
 import Results from './pages/Results/Results';
@@ -13,7 +13,7 @@ class App extends Component {
     super();
     
 		this.state = {
-			top: 20,
+			top: 50,
       bottom: 10,
       searchResults: []
     };
@@ -22,7 +22,6 @@ class App extends Component {
     console.log(result.response.docs)
     const resultObject = result.response.docs;
     this.setState({searchResults: resultObject})
-    console.log("passed state up!!!");
   }
   render() {
     return (
@@ -30,25 +29,14 @@ class App extends Component {
         <Layout className="layout">
           <Header>
             <Row className="logo" type="flex" justify="center">
-              <Col span={8}>
+              <Col span={10}>
                 <Link to={'/'}>
-                  <div className="logo">New York Times React Scraper</div>
+                  <div className="logo">New York Times React Search</div>
                 </Link>
-              </Col>
-              <Col span={4} style={{ float: 'right' }}>
-                <Menu
-                  theme="dark"
-                  mode="horizontal"
-                  style={{ lineHeight: '64px' }}
-                >
-                  <Menu.Item key="1">nav 1</Menu.Item>
-                  <Menu.Item key="2">nav 2</Menu.Item>
-                  <Menu.Item key="3">nav 3</Menu.Item>
-                </Menu>
               </Col>
             </Row>
           </Header>
-          <Content style={{ backgroundImage: "url('../images/retro-furnish.png')", height: '100vh' }}>
+          <Content style={{ backgroundImage: "url('../images/retro-furnish.png')", minHeight: 'calc(100vh - 132.8px)' }}>
             <div style={{ minHeight: 280 }}>
               <Row>
                 <Col 
@@ -57,7 +45,7 @@ class App extends Component {
                   <Switch>
                       <Route exact path="/results" component={() => 
                         <Affix offsetTop={this.state.top}>
-                          <SearchBox setSearch={this.setSearch}/>
+                          <SearchBox onSearch={this.setSearch}/>
                         </Affix>} />
                       <Route />
                     </Switch>
@@ -67,7 +55,7 @@ class App extends Component {
                       <Route 
                         exact path="/" 
                         component={()=>
-                          <Search setSearch={this.setSearch}></Search>} />
+                          <Search className="search" setSearch={this.setSearch}></Search>} />
                       <Route 
                         exact path="/results" 
                         component={()=>
@@ -81,8 +69,8 @@ class App extends Component {
               </Row>
             </div>
           </Content>
-          <Footer style={{ textAlign: 'center' }}>
-            Ant Design ©2018 Created by Ant UED
+          <Footer style={{ textAlign: 'center', backgroundColor: '#001529', color: 'white'}}>
+            Ant Design ©2018 Created by Henry McIntyre
           </Footer>
         </Layout>
       </Router>

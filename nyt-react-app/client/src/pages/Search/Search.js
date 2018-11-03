@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Container from "../../components/Container";
-import { Row, Col } from 'antd';
+import { Row, Col, Affix } from 'antd';
 import SearchBox from "../../components/SearchBox";
+import '../../components/Container/container.css'
 // import API from "../../utils/API";
 // import { Link } from "react-router-dom";
 
@@ -13,6 +13,7 @@ class Search extends Component {
         this.handleSearch = this.handleSearch.bind(this);
         this.state = {
             results: '',
+            top: 150
         }
     }
     handleSearch = (resultObj) => {
@@ -27,17 +28,18 @@ class Search extends Component {
             <Row type="flex" justify="center">
                 <Col span={16} className="title">
                     <Row type="flex" justify="center">
-                        <Col span={16}>
-                            <div>Search New York Times Articles</div>
+                        <Col span={18}>
+                            <div className="title">Search New York Times Articles</div>
                         </Col>
                     </Row>
                     <Row type="flex" justify="center">
-                        <Col span={10} className="searchBox">
-                            <SearchBox
-                                setSearch={this.props.setSearch}
-                                onSearch={this.handleSearch}
-                                onChange={this.onChange}>
-                            </SearchBox>
+                        <Col span={24} className="searchBox">
+                            <Affix offsetTop={this.state.top}>
+                                <SearchBox
+                                    setSearch={this.props.setSearch}
+                                    onSearch={this.handleSearch}>
+                                </SearchBox>
+                            </Affix>
                         </Col>
                     </Row>
                 </Col>

@@ -18,7 +18,6 @@ class SearchBox extends Component {
             endDate: "",
             enabled: false,
             searchResult: []
-
         };
     }
     componentDidMount() {
@@ -68,7 +67,7 @@ class SearchBox extends Component {
         // setting a var for today's date, formatted for the range picker, for future implementation
         // const now = moment().format('YYYY/MM/DD');
         return (
-            <Row type="flex" justify="center">
+            <Row type="flex" className="search-box" justify="center">
                 <Col span={16} style={{ margin: '0 auto' }}>
                     <Form layout={'vertical'}>
                         <div

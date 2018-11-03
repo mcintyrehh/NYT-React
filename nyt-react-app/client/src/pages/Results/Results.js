@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Container from "../../components/Container";
 import ResultsBox from "../../components/ResultsBox";
 import { Row, Col } from 'antd';
 // import API from "../../utils/API";
@@ -24,9 +23,7 @@ class Results extends Component {
                         </Col>
                     </Row>
                     <Row type="flex" justify="center">
-                        <Col span={10} className="searchBox">
-                            <ResultsBox></ResultsBox>
-                        </Col>
+                        <ResultsBox results={this.props.results}></ResultsBox>
                     </Row>
                 </Col>
             </Row>

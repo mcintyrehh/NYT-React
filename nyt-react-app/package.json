@@ -14,7 +14,9 @@
     "if-env": "^1.0.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server.js",
+    "client": "cd client && npm run start",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -27,5 +29,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "concurrently": "^4.0.1"
+  }
 }

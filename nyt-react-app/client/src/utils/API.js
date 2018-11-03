@@ -7,7 +7,7 @@ export default {
     return axios.get(BASEURL, {
       params: {
         'api-key': APIKEY,
-        'q': searchObj.query,
+        'q': searchObj.search,
         'begin_date': searchObj.startDate,
         'end_date': searchObj.endDate,
       }
@@ -18,6 +18,10 @@ export default {
     .catch(function (error) {
       console.log(error);
     });
+  },
+    // Saves an article to the database
+  saveArticle: function(articleData) {
+    return axios.post("/api/articles", articleData);
   }
 };
 
