@@ -8,12 +8,12 @@ export default {
       params: {
         'api-key': APIKEY,
         'q': searchObj.query,
-        'begin_date': searchObj.startYear,
-        'end_date': searchObj.endYear,
+        'begin_date': searchObj.startDate,
+        'end_date': searchObj.endDate,
       }
     })
     .then(function (response) {
-      console.log(response);
+      return response;
     })
     .catch(function (error) {
       console.log(error);
