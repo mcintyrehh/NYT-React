@@ -4,21 +4,21 @@
   "private": true,
   "dependencies": {
     "antd": "^3.10.3",
-    "axios": "^0.16.2",
     "express": "^4.16.4",
-    "if-env": "^1.0.4",
     "mongoose": "^5.3.7",
     "morgan": "^1.9.1",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.0"
+    "react-scripts": "2.1.0",
+    "axios": "^0.16.2",
+    "if-env": "^1.0.4"
   },
   "scripts": {
-    "start": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "client": "cd client && npm run start",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
-    "build": "cd client && react-scripts build",
+    "start:prod": "node server/server.js",
+    "build": "cd nyt-react-app && client && react-scripts build",
     "heroku-postbuild": "npm run build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
