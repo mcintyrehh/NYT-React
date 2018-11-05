@@ -4,14 +4,15 @@
   "private": true,
   "dependencies": {
     "antd": "^3.10.3",
+    "axios": "^0.16.2",
     "express": "^4.16.4",
+    "if-env": "^1.0.4",
     "mongoose": "^5.3.7",
     "morgan": "^1.9.1",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
-    "react-scripts": "2.1.0",
-    "axios": "^0.16.2",
-    "if-env": "^1.0.4"
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.1.0"
   },
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
