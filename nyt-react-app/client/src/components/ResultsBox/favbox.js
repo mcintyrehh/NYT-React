@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Row, Col } from 'antd';
-import {Card} from '../Card'
+import {FavCard} from '../Card'
 import API from "../../utils/API";
 import '../../App.css';
 import "./resultsbox.css";
@@ -8,20 +8,20 @@ import "./resultsbox.css";
 // import { Link } from "react-router-dom";
 // import { createBrowserHistory } from "history";
 // const history = createBrowserHistory();
-class ResultsBox extends Component {
+class FavBox extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            searchResults: '',
+            favResults: '',
             top: 50
         };
     }
     componentDidMount() {
-        console.log("ResultsBox");
+        console.log("FavBox");
         console.log(this.props.results);
-        const searchResults = this.props.results
-        this.setState({searchResults})
+        const favResults = this.props.results
+        this.setState({favResults})
     }
     handleClick = () => {
         const setOpposite = (this.state.savedState === this.unsaved) ? this.unsaved : this.saved;
@@ -40,14 +40,15 @@ class ResultsBox extends Component {
             .catch(err => console.log(err));
     }
     render() {
+        console.log('in fav box')
         return (
             <Row type="flex" justify="center">
                 <Col span={24}  style={{marginTop: '30px'}}>
-                    {this.state.searchResults && this.state.searchResults.map((article)=> <Card onClick={() => this.saveArticle(article)} article={article} key={article._id}></Card>)}
+                    {this.state.favResults && this.state.favResults.map((article)=> <FavCard onClick={() => this.saveArticle(article)} article={article} key={article._id}></FavCard>)}
                 </Col>
             </Row>
         )
     }
 };
 
-export default ResultsBox;
+export default FavBox;

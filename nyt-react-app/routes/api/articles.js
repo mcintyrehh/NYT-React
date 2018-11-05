@@ -3,7 +3,8 @@ const articleController = require("../../controllers/articleController");
 
 router.route("/")
     // matches with '/api/articles'
-    .post(articleController.create);
+    .post(articleController.create)
+    .get(articleController.get);
 router.route('/:id')
     // matches with '/api/articles/:id'
     // .put(articleController.update)

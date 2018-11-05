@@ -50,7 +50,6 @@ class SearchBox extends Component {
         this.setState({
             [name]: value
         });
-        console.log(this.state)
     };
     onDateChange = (date) => {
         // ternary operators for: if there is date data, set the state to the formated date

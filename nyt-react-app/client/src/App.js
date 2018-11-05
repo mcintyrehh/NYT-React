@@ -5,15 +5,17 @@ import { Layout, Row, Col, Affix } from 'antd';
 import Search from "./pages/Search"
 import SearchBox from './components/SearchBox';
 import Results from './pages/Results/Results';
+import Favorites from './pages/Favorites/Favorites'
+import FavLink from './components/FavLink/FavLink';
 
 const { Header, Content, Footer } = Layout;
 
 class App extends Component {
   constructor() {
     super();
-    
-		this.state = {
-			top: 50,
+
+    this.state = {
+      top: 50,
       bottom: 10,
       searchResults: []
     };
@@ -21,7 +23,7 @@ class App extends Component {
   setSearch = (result) => {
     console.log(result.response.docs)
     const resultObject = result.response.docs;
-    this.setState({searchResults: resultObject})
+    this.setState({ searchResults: resultObject })
   }
   render() {
     return (
@@ -39,37 +41,54 @@ class App extends Component {
           <Content style={{ backgroundImage: "url('../images/retro-furnish.png')", minHeight: 'calc(100vh - 132.8px)' }}>
             <div style={{ minHeight: 280 }}>
               <Row>
-                <Col 
+                <Col
                   span={5}
                   className="left-sidebar">
                   <Switch>
-                      <Route exact path="/results" component={() => 
-                        <Affix offsetTop={this.state.top}>
-                          <SearchBox onSearch={this.setSearch}/>
-                        </Affix>} />
-                      <Route />
-                    </Switch>
+                    <Route exact path="/results" component={() =>
+                      <Affix offsetTop={this.state.top}>
+                        <SearchBox onSearch={this.setSearch} />
+                      </Affix>} />
+                    <Route exact path="/favorites" component={() =>
+                      <Affix offsetTop={this.state.top}>
+                        <SearchBox onSearch={this.setSearch} />
+                      </Affix>} />
+                  </Switch>
                 </Col>
-                  <Col span={14}>
-                    <Switch>
-                      <Route 
-                        exact path="/" 
-                        component={()=>
-                          <Search className="search" setSearch={this.setSearch}></Search>} />
-                      <Route 
-                        exact path="/results" 
-                        component={()=>
-                          <Results 
-                            results={this.state.searchResults}>
-                          </Results>} />
-                      <Route component={Search} />
-                    </Switch>
-                  </Col>
-                <Col span={5}></Col>
+                <Col span={14}>
+                  <Switch>
+                    <Route
+                      exact path="/"
+                      component={() =>
+                        <Search className="search" setSearch={this.setSearch}></Search>} />
+                    <Route
+                      exact path="/results"
+                      component={() =>
+                        <Results
+                          results={this.state.searchResults}>
+                        </Results>} />
+                    <Route
+                      exact path="/favorites"
+                      component={Favorites} />
+                    <Route component={Search} />
+                  </Switch>
+                </Col>
+                <Col span={5}>
+                  <Switch>
+                    <Route exact path="/" component={() =>
+                      <Affix offsetTop={this.state.top}>
+                        <FavLink />
+                      </Affix>} />
+                    <Route exact path="/results" component={() =>
+                      <Affix offsetTop={this.state.top}>
+                        <FavLink />
+                      </Affix>} />
+                  </Switch>
+                </Col>
               </Row>
             </div>
           </Content>
-          <Footer style={{ textAlign: 'center', backgroundColor: '#001529', color: 'white'}}>
+          <Footer style={{ textAlign: 'center', backgroundColor: '#001529', color: 'white' }}>
             Ant Design ©2018 Created by Henry McIntyre
           </Footer>
         </Layout>

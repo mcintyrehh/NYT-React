@@ -1,5 +1,4 @@
 import { Row, Col, Icon } from 'antd';
-import CardBtn from '../CardBtn'
 import './Card.css'
 // import "../CardBtn.css";
 import React, { Component } from 'react';
@@ -13,16 +12,12 @@ class Card extends Component {
 
     };
   }
-  handleClick = (e, data) => {
-    console.log(e.target.value)
-    console.log(e, data);
-  }
   render(props) {
 
     return (
       <Row className="card-div">
         <Col span={7} className="side-info-holder">
-          <div>
+          <div style={{marginTop:'10px'}}>
               <img alt={`pic for "${this.props.article.title}" article`} src="https://pmcdeadline2.files.wordpress.com/2016/10/the-new-york-times-logo-featured.jpg?w=446&h=299&crop=1"></img>
           </div>
           {/* on clicking this button, it will run the function displayRealNews() and pass UP the object of the fake news article */}
@@ -38,7 +33,7 @@ class Card extends Component {
         <Col span={15}>
           <div className="article-info">
             <h3 className="card-title">
-              <a target="_blank" href={this.props.article.web_url}>{this.props.article.headline.main}</a>
+              <a target="_blank" href={this.props.article.web_url}>{this.props.article.headline.main ? this.props.article.headline.main : this.props.article.title}</a>
             </h3>
             <div className="card-text p-0 summary">{this.props.article.snippet}</div>
           </div>

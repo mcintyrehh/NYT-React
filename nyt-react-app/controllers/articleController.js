@@ -9,6 +9,12 @@ module.exports = {
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
     },
+    get: function(req, res) {
+      db.Article
+        .find()
+        .then(response => res.json(response))
+        .catch(err => res.status(422).json(err));
+    }
   };
   
 

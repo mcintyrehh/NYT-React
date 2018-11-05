@@ -22,7 +22,10 @@ export default {
     // Saves an article to the database
   saveArticle: function(articleData) {
     return axios.post("/api/articles", articleData);
-  }
+  },
+  getFavs: function() {
+    return axios.get("/api/articles")
+  } 
 };
 
 // export default {
