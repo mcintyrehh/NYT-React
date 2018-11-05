@@ -45,6 +45,9 @@ img {
 .fav {
     color: gold;
 }
+.delete {
+    color: red;
+}
 .news-btn {
     margin-top: 10px;
 }

@@ -7,8 +7,9 @@ router.route("/")
     .get(articleController.get);
 router.route('/:id')
     // matches with '/api/articles/:id'
+    //**will be used for adding a note to the article**/
     // .put(articleController.update)
-    // .delete(articleController.remove);
+    .delete(articleController.remove);
 
     module.exports = router;
 

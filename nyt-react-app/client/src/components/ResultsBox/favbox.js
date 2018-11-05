@@ -23,20 +23,26 @@ class FavBox extends Component {
         const favResults = this.props.results
         this.setState({favResults})
     }
-    handleClick = () => {
-        const setOpposite = (this.state.savedState === this.unsaved) ? this.unsaved : this.saved;
-        this.setState({savedState: setOpposite}) 
+    loadFavs() {
+        API.getFavs()
+            .then(res => {
+                const favObj = res.data;
+                this.setState({ favResults: favObj })
+            }
+            )
+            .catch(err => console.log(err));
+    };
+    reload() {
+        this.props.reload();
     }
-    saveArticle = (articleObj) => {
-        console.log(articleObj);
-        const article = {
-            title: articleObj.headline.main,
-            date: articleObj.pub_date,
-            url: articleObj.web_url,
-            snippet: articleObj.snippet
-        }
-        API.saveArticle(article)
-            .then(res=> console.log(res))
+    deleteArticle = (id) => {
+        console.log(id);
+        API.deleteArticle(id)
+            .then(
+                res=> {
+                    console.log(res)
+                    this.loadFavs()
+                })
             .catch(err => console.log(err));
     }
     render() {
@@ -44,7 +50,7 @@ class FavBox extends Component {
         return (
             <Row type="flex" justify="center">
                 <Col span={24}  style={{marginTop: '30px'}}>
-                    {this.state.favResults && this.state.favResults.map((article)=> <FavCard onClick={() => this.saveArticle(article)} article={article} key={article._id}></FavCard>)}
+                    {this.state.favResults && this.state.favResults.map((article)=> <FavCard onClick={() => this.deleteArticle(article._id)} article={article} key={article._id}></FavCard>)}
                 </Col>
             </Row>
         )

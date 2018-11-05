@@ -22,12 +22,12 @@ class FavCard extends Component {
           </div>
           {/* on clicking this button, it will run the function displayRealNews() and pass UP the object of the fake news article */}
           <div
-            className="fav"
+            className="delete"
             value={this.props.article._id}
             fav-saved="false">
             <button className="card-btn"
               onClick={this.props.onClick}
-            ><Icon type="star"></Icon></button>
+            ><Icon type="delete"></Icon></button>
           </div>
         </Col>
         <Col span={15}>

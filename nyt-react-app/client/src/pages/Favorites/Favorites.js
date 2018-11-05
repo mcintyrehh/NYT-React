@@ -13,9 +13,6 @@ class Favorites extends Component {
             favorites: []
         };
     }
-    componentDidUpdate() {
-
-    };
     componentDidMount() {
         console.log("in Favorites.js");
         this.loadFavs()
@@ -42,7 +39,8 @@ class Favorites extends Component {
                             </Col>
                         </Row>
                         <Row type="flex" justify="center">
-                            <FavBox results={this.state.favorites}></FavBox>
+                            <FavBox results={this.state.favorites}
+                            reload={this.loadFavs}></FavBox>
                         </Row>
                     </Col>
                 </Row>
