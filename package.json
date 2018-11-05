@@ -16,13 +16,13 @@
   },
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "client": "cd client && npm run start",
-    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "start:prod": "node server/server.js",
-    "build": "cd client && react-scripts build",
-    "heroku-postbuild": "npm run build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm run start",
+    "seed": "node server/scripts/seedDB.js",
+    "install": "cd client && yarn install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"
