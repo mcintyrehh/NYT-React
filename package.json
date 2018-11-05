@@ -14,10 +14,10 @@
     "if-env": "^1.0.4"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
-    "build": "cd client && react-scripts build",
+    "build": "cd nyt-react-app && client && react-scripts build",
     "heroku-postbuild": "npm run build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
